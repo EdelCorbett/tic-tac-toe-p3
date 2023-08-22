@@ -6,9 +6,12 @@ print("TIC TAC TOE")
 
 # Create a board
 def print_board(board):
+    border = f"{Fore.RED}---------{Fore.RESET}"
+    separator = f"{Fore.RED} | {Fore.RESET}"
+
     for row in board:
-        print(" | ".join(row))
-        print("---------")
+        print(separator.join(row))
+        print(border)
 
 def game_board( ):
     return [["1", "2", "3"], 
