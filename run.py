@@ -1,4 +1,5 @@
 import random
+import time
 import colorama
 from colorama import Fore, Back, Style
 from simple_term_menu import TerminalMenu
@@ -38,6 +39,16 @@ def choose_players():
     else:
         return "Player vs Computer"
     
+    
+def check_for_win(board, current_player):
+    for row in board:
+        if all(board[row][col] == player for row in range(3)):
+            return True
+        if all(board[i][i] == player for i in range(3)) or all(board[i][2-i] == player for i in range(3)):
+            return True
+    
+    return False
+    
 def play_game():
     game_mode = choose_players()
     if game_mode == "Player vs Player":
@@ -71,6 +82,23 @@ def play_game():
             if board[row][col] in ["X", "O"]:
                 print("Position already taken go again!")
                 continue
+
+            else:
+                print("Wait it's the computers turn")
+                time.sleep(1)
+                row, col = computer_move(board)
+                board[row][col] = current_player
+
+                if check_for_win(board, current_player):
+                    game_board(board)
+                    if game_mode == "Player vs. Computer" and current_player == "O":
+                        print("Computer wins!")
+                    else:
+                        print(f"{player1_name if current_player == 'X' else player2_name} wins!")
+                    break
+
+
+
             
 
 if __name__ == "__main__":
