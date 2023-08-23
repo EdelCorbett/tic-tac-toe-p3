@@ -6,7 +6,7 @@ from simple_term_menu import TerminalMenu
 print("TIC TAC TOE")
 
 # Create a board
-def print_board(board):
+def game_board(board):
     border = f"{Fore.RED}---------{Fore.RESET}"
     separator = f"{Fore.RED} | {Fore.RESET}"
 # changes the color of num to color of X or O
@@ -14,16 +14,13 @@ def print_board(board):
         colored_row = [cell if cell in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
                     else (f"{Fore.YELLOW}{cell}{Fore.RESET}" if cell == "X"
                             else f"{Fore.BLUE}{cell}{Fore.RESET}") for cell in row]
-        print(separator.join(row))
+        print(separator.join(colored_row))
         print(border)
 
-def game_board( ):
+def start_game_board( ):
     return [["1", "2", "3"], 
             ["4", "5", "6"], 
             ["7", "8", "9"]]
-board = game_board()
-
-# Player name input
 
 
 # Choose play mode computer or player
@@ -41,23 +38,17 @@ def choose_players():
     else:
         return "Player vs Computer"
     
-print(choose_players())
-
-print_board(board)
-
-def play_game():
+def play_game();
     game_mode = choose_players()
     if game_mode == "Player vs Player":
-        player1_name = input("Player 1, please enter your name (X): ")
-        player2_name = input("Player 2, please enter your name (O): ")
-
-    else:
-        player1_name = input("Player 1, please enter your name (X): ")
-        player2_name = "Computer"
-        print(f"{player1_name} vs {player2_name}")
-
-        board = game_board()
-        current_player ="X"
+        player1_name = input("(X) What's your name?: ")
+        player2_name = input("(O) What's your name?: ")
+        else
+        player1_name = input("(X) What's your name?: ")
+        player2_name = "Computer(O)"
+        board = start_game_board()
+        current_player = "X"
 
 
-
+if __name__ == "__main__":
+    play_game()
