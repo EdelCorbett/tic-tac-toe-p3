@@ -58,6 +58,19 @@ def play_game():
             if position == "q":
                 print("Goodbye!")
                 return
+            # check if the input is a number and if it is between 1-9
+            if not position.isdigit() or not (1 <= int(position) <= 9):
+                print("Invalid position Enter a number from 1-9")
+                continue
+           
+           # change the position to an integer
+            position = int(position) -1
+            row, col = divmod(position, 3)
+
+            if board[row][col] in ["X", "O"]:
+                print("Position already taken go again!")
+                continue
+            
 
 
 if __name__ == "__main__":
