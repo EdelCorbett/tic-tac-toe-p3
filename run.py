@@ -38,16 +38,25 @@ def choose_players():
     else:
         return "Player vs Computer"
     
-def play_game();
+def play_game():
     game_mode = choose_players()
     if game_mode == "Player vs Player":
         player1_name = input("(X) What's your name?: ")
         player2_name = input("(O) What's your name?: ")
-        else
+    else:
         player1_name = input("(X) What's your name?: ")
         player2_name = "Computer(O)"
         board = start_game_board()
         current_player = "X"
+
+    while True:
+        game_board(board)
+
+        if current_player == "X" or game_mode == "Player vs Player":
+            position = input(f"{player1_name if current_player == 'X' else player2_name} choose a position from 1-9, or press q to quit: ")
+
+            if position == "q":
+                print("Goodbye!")
 
 
 if __name__ == "__main__":
