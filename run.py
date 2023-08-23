@@ -23,6 +23,11 @@ def game_board( ):
             ["7", "8", "9"]]
 board = game_board()
 
+# Player name input
+
+
+# Choose play mode computer or player
+
 def choose_players():
 
     player_options = ["Player vs Player", "Player vs Computer"]
@@ -39,4 +44,20 @@ def choose_players():
 print(choose_players())
 
 print_board(board)
+
+def play_game():
+    game_mode = choose_players()
+    if game_mode == "Player vs Player":
+        player1_name = input("Player 1, please enter your name (X): ")
+        player2_name = input("Player 2, please enter your name (O): ")
+
+    else:
+        player1_name = input("Player 1, please enter your name (X): ")
+        player2_name = "Computer"
+        print(f"{player1_name} vs {player2_name}")
+
+        board = game_board()
+        current_player ="X"
+
+
 
