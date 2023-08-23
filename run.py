@@ -57,6 +57,7 @@ def play_game():
 
             if position == "q":
                 print("Goodbye!")
+                return
 
 
 if __name__ == "__main__":
