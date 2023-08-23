@@ -63,15 +63,15 @@ def play_game():
                 print("Invalid position Enter a number from 1-9")
                 continue
            
-           # change the position to an integer
+           # change the position to an int and subtract 1 to get the index of the position
+           # divmod is used to get the row and column of the position
             position = int(position) -1
             row, col = divmod(position, 3)
-
+# check if the position is already taken
             if board[row][col] in ["X", "O"]:
                 print("Position already taken go again!")
                 continue
             
-
 
 if __name__ == "__main__":
     play_game()
