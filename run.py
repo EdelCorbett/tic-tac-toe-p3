@@ -54,6 +54,10 @@ def check_for_win(board, player):
     
     return False
 
+def check_for_tie(board):
+    return all(cell in ["X", "O"] for row in board for cell in row)
+
+
     
 def play_game():
     game_mode = choose_players()
@@ -101,6 +105,10 @@ def play_game():
                         print("Computer wins!")
                     else:
                         print(f"{player1_name if current_player == 'X' else player2_name} wins!")
+                    break
+                if check_for_tie(board):
+                    game_board(board)
+                    print("It's a tie!")
                     break
 
 
