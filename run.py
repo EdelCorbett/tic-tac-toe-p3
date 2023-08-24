@@ -1,5 +1,6 @@
 import random
 import time
+import colorama
 from colorama import Fore
 from simple_term_menu import TerminalMenu
 
