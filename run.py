@@ -121,11 +121,8 @@ def play_game():
             break
 # changes player after each move
         current_player = "O" if current_player == "X" else "X"
-""""
-this function asks the player if they want to play again
-if yes, it starts the game again
-if no, it ends the game
-"""
+# asks player if they want to play again
+
     play_again = input("Play again (y/n)? ")
     if play_again.lower() == "y":
         play_game()
