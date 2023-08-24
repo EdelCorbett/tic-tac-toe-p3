@@ -57,7 +57,9 @@ def check_for_win(board, player):
 def check_for_tie(board):
     return all(cell in ["X", "O"] for row in board for cell in row)
 
-
+def computer_move(board):
+    empty_cells = [(row, col) for row in range(3) for col in range(3) if board[row][col] not in ["X", "O"]]
+    return random.choice(empty_cells) if empty_cells else None
     
 def play_game():
     game_mode = choose_players()
