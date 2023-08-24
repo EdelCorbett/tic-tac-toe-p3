@@ -110,6 +110,10 @@ def play_game():
             break
 
         current_player = "O" if current_player == "X" else "X"
+    play_again = input("Play again (y/n)? ")
+    if play_again.lower() != "y":
+        print("Goodbye!")
+        return
 
 if __name__ == "__main__":
     play_game()
