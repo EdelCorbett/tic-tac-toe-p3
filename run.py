@@ -1,7 +1,9 @@
 import random
 import time
-from colorama import Fore
+from colorama import Fore, Style
 from simple_term_menu import TerminalMenu
+
+PLAYER_COLORS = {"X": Fore.YELLOW, "O": Fore.BLUE}
 
 
 def game_board(board):
@@ -65,14 +67,19 @@ def check_for_tie(board):
 def computer_move(board):
     empty_cells = [(row, col) for row in range(3) for col in range(3) if board[row][col] not in ["X", "O"]]
     return random.choice(empty_cells) if empty_cells else None
+
+def validate_name(name):
+    return name.isalpha() and len(name) > 0
 # This function gets the player to input their name
-def get_player_name():
-    return input("Enter your name (X): ")
-"""
- this function chooses how the game will be played
-    either player vs player or player vs computer
-    and returns the choice
-"""
+def get_player_name(player_symbol):
+    while True:
+        name = input(f"Enter your name ({player_symbol}): ").strip()
+        if validate_name(name):
+            return PLAYER_COLORS[player_symbol] + name.upper() + Style.RESET_ALL
+        else:
+            print(f"{Fore.RED}Invalid name. Please try again.")
+
+
 def choose_players():
     """This function chooses how the game will be played
     either player vs player or player vs computer
@@ -107,12 +114,16 @@ def play_game():
     give the option to play again
     """
     game_mode = choose_players()
+
+    if game_mode is None:
+        return
     
     if game_mode == "Player vs. Player":
-        player1_name = input("Enter the name of Player 1 (X): ")
-        player2_name = input("Enter the name of Player 2 (O): ")
+        player1_name = get_player_name("X")
+        player2_name = get_player_name("O")
+        
     else:
-        player1_name = input("Enter your name (X): ")
+        player1_name = get_player_name("X")
         player2_name = "Computer (O)"
     
     board = start_game_board()
@@ -167,6 +178,5 @@ def play_game():
     else:
         print("Goodbye!")
     
-# This is the main function that runs the game
 if __name__ == "__main__":
     play_game()
