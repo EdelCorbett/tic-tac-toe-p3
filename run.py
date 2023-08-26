@@ -3,40 +3,60 @@ import time
 from colorama import Fore
 from simple_term_menu import TerminalMenu
 
+
 def game_board(board):
     border = f"{Fore.RED}---------{Fore.RESET}"
     separator = f"{Fore.RED} | {Fore.RESET}"
 
     for row in board:
-        colored_row = [cell if cell in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        colored_row = [
+            cell if cell in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
             else (f"{Fore.YELLOW}{cell}{Fore.RESET}" if cell == "X"
                 else f"{Fore.BLUE}{cell}{Fore.RESET}") for cell in row]
+        
         print(separator.join(colored_row))
         print(border)
 
-# This fuction create a new game board
-# Numbers the cells from 1 to 9
+
 def start_game_board():
     return [["1", "2", "3"],
             ["4", "5", "6"],
             ["7", "8", "9"]]
-# This function checks if the player has won
-# by checking all the possible winning combinations
+
+def show_rules():
+    rules = [
+        "THE RULES OF TIC-TAC-TOE",
+        "This game is played on a 9 space board ",
+        "Each player takes turns to place their mark (X or O) on the board",
+        "The first player to get 3 of their marks in a row wins",
+        "They can be up, down, across, or diagonally across the board",
+        "If all 9 spaces are full and no one has matched 3 it's a tie",
+        "To quit the game press 'q'",
+        "To Play again press 'y'",
+        "Good Luck!"
+    ]
+
+    for rule in rules:
+        print(rule)
+        time.sleep(1)
+
 def check_for_win(board, player):
-    #checks rows
+    """Checks if the player has won
+    by checking all the possible winning combinations
+    checks rows columns and diagonals
+    """
     for row in board:
         if all(cell == player for cell in row):
             return True
-# checks columns
+
+
     for col in range(3):
         if all(board[row][col] == player for row in range(3)):
             return True
-# checks diagonals
-    if all(board[i][i] == player for i in range(3)) or all(board[i][2 - i] == player for i in range(3)):
-        return True
-# if none of the above is true, return false 
+        if all(board[i][i] == player for i in range(3)) or all(board[i][2 - i] == player for i in range(3)):
+            return True 
     return False
-# This function checks if the game is a tie
+
 def check_for_tie(board):
     # if all cells are full and no one has won it's a tie
     return all(cell in ["X", "O"] for row in board for cell in row)
@@ -54,20 +74,38 @@ def get_player_name():
     and returns the choice
 """
 def choose_players():
-    player_options = ["Player vs. Player", "Player vs. Computer"]
+    """This function chooses how the game will be played
+    either player vs player or player vs computer
+    """
+    player_options = ["Player vs. Player", "Player vs. Computer", "Show Rules"]
     terminal_menu = TerminalMenu(player_options, title="Tic Tac Toe - Choose Players")
     selected_index = terminal_menu.show()
+
     if selected_index == 0:
         return "Player vs. Player"
-    else:
+    elif selected_index == 1:
         return "Player vs. Computer"
-"""
-this function starts the game
-it get player to enter their names
-tell them their symbols
-and starts the game
-start the game with player X"""
+    elif selected_index == 2:
+        show_rules()
+        input("Press Enter to continue.")
+        return choose_players()
+    else:
+        print(f"{Fore.GREEN}Goodbye!{Fore.RESET}")
+        return None
+
+    
 def play_game():
+    """This is the main function that runs the game
+    it get game mode, player names
+    displays the game board
+    gets player input
+    checks for win or tie
+    changes player
+    asks if player wants to play again
+    gives option to quit
+    gets computer move
+    give the option to play again
+    """
     game_mode = choose_players()
     
     if game_mode == "Player vs. Player":
@@ -88,7 +126,7 @@ def play_game():
 
             if position.lower() == 'q':
                 print("Goodbye!")
-                return  # Exit the game loop and function
+                return
 
             if not position.isdigit() or not (1 <= int(position) <= 9):
                 print("Invalid input. Please enter a number between 1 and 9.")
