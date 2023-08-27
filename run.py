@@ -138,8 +138,7 @@ def play_game():
         if current_player == "X" or game_mode == "Player vs. Player":
             position = input(
                 f"{player1_name if current_player == 'X' else player2_name},"
-                f"{Fore.LIGHTMAGENTA_EX
-                }Enter a position (1-9), or q to quit game:{Style.RESET_ALL} "
+                f"{Fore.LIGHTMAGENTA_EX}Enter position (1-9),or q to quit game:{Style.RESET_ALL} "
                 )
 
             if position.lower() == 'q':
@@ -156,7 +155,7 @@ def play_game():
             row, col = divmod(position, 3)
 
             if board[row][col] in ["X", "O"]:
-                print(f"{Fore.LIGHTRED_EX}That position is already occupied. Try again.{Style.RESET_ALL}")
+                print(f"{Fore.LIGHTRED_EX}Position already occupied.Try again.{Style.RESET_ALL}")
                 continue
         else:
             print(f"{Fore.LIGHTBLUE_EX}Wait it's the computer's turn...{Style.RESET_ALL}")
@@ -187,6 +186,7 @@ def play_game():
     else:
         print(f"{Fore.GREEN}Goodbye!{Style.RESET_ALL}")
         return
+
 
 if __name__ == "__main__":
     play_game()
