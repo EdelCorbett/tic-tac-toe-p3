@@ -27,15 +27,15 @@ def start_game_board():
 
 def show_rules():
     rules = [
-        "THE RULES OF TIC-TAC-TOE",
-        "This game is played on a 9 space board ",
-        "Each player takes turns to place their mark (X or O) on the board",
-        "The first player to get 3 of their marks in a row wins",
-        "They can be up, down, across, or diagonally across the board",
-        "If all 9 spaces are full and no one has matched 3 it's a tie",
-        "To quit the game press 'q'",
-        "To Play again press 'y'",
-        "Good Luck!"
+        " THE RULES OF TIC-TAC-TOE",
+        " This game is played on a 9 space board ",
+        " Each player takes turns to place their mark (X or O) on the board",
+        " The first player to get 3 of their marks in a row wins",
+        " They can be up, down, across, or diagonally across the board",
+        " If all 9 spaces are full and no one has matched 3 it's a tie",
+        " To quit the game press 'q'",
+        " To Play again press 'y'",
+        " Good Luck!"
     ]
 
     for rule in rules:
@@ -97,7 +97,7 @@ def choose_players():
         return "Player vs. Computer"
     elif selected_index == 2:
         show_rules()
-        input(f"{Fore.MAGENTA}Press Enter to continue.{Style.RESET_ALL}")
+        input(f"{Fore.LIGHTMAGENTA_EX}Press Enter to continue.{Style.RESET_ALL}")
         return choose_players()
     else:
         print(f"{Fore.GREEN}Goodbye!{Fore.RESET}")
@@ -138,13 +138,15 @@ def play_game():
         if current_player == "X" or game_mode == "Player vs. Player":
             position = input(
                 f"{player1_name if current_player == 'X' else player2_name},"
-                f"{Fore.LIGHTYELLOW_EX}Enter a position (1-9), or q to quit game:{Style.RESET_ALL} "
+                f"{Fore.LIGHTMAGENTA_EX
+                }Enter a position (1-9), or q to quit game:{Style.RESET_ALL} "
                 )
 
             if position.lower() == 'q':
                 print(f"{Fore.GREEN}Goodbye!{Style.RESET_ALL}")
-
-                return
+                input(f"{Fore.LIGHTMAGENTA_EX}Press Enter to Return to Game Menu.{Style.RESET_ALL}")
+                return choose_players()
+                
 
             if not position.isdigit() or not (1 <= int(position) <= 9):
                 print(f"{Fore.RED}Invalid input. Please enter a number between 1 and 9.{Style.RESET_ALL}")
@@ -179,11 +181,12 @@ def play_game():
         current_player = "O" if current_player == "X" else "X"
 # asks player if they want to play again
 
-    play_again = input(f"{Fore.MAGENTA}Play again (y/n)?{Style.RESET_ALL}")
+    play_again = input(f"{Fore.LIGHTMAGENTA_EX}Play again (y/n)?{Style.RESET_ALL}")
     if play_again.lower() == "y":
         play_game()
     else:
         print(f"{Fore.GREEN}Goodbye!{Style.RESET_ALL}")
+        return
 
 if __name__ == "__main__":
     play_game()
