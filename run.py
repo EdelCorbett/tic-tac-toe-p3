@@ -3,7 +3,7 @@ import time
 from colorama import Fore,Style
 from simple_term_menu import TerminalMenu
 
-PLAYER_COLORS = {"X": Fore.YELLOW, "O": Fore.BLUE}
+PLAYER_COLORS = {"X": Fore.LIGHTYELLOW_EX, "O": Fore.LIGHTBLUE_EX}
 
 
 def game_board(board):
@@ -13,8 +13,8 @@ def game_board(board):
     for row in board:
         colored_row = [
             cell if cell in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-            else (f"{Fore.YELLOW}{cell}{Fore.RESET}" if cell == "X"
-                else f"{Fore.BLUE}{cell}{Fore.RESET}") for cell in row]
+            else (f"{Fore.LIGHTYELLOW_EX}{cell}{Fore.RESET}" if cell == "X"
+                else f"{Fore.LIGHTBLUE_EX}{cell}{Fore.RESET}") for cell in row]
         
         print(separator.join(colored_row))
         print(border)
@@ -73,11 +73,14 @@ def validate_name(name):
 # This function gets the player to input their name
 def get_player_name(player_symbol):
     while True:
-        name = input(f"Enter your name ({player_symbol}): ").strip()
+        name = input(
+    f"{Fore.LIGHTGREEN_EX}Enter your name ({player_symbol}): {Style.RESET_ALL}"
+).strip()
+
         if validate_name(name):
             return PLAYER_COLORS[player_symbol] + name.upper() + Style.RESET_ALL
         else:
-            print(f"{Fore.RED}Invalid name. Please try again.")
+            print(f"{Fore.RED}Invalid name. Please try again.{Style.RESET_ALL}")
 
 
 def choose_players():
