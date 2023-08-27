@@ -1,6 +1,6 @@
 import random
 import time
-from colorama import Fore, Style
+from colorama import Fore,Style
 from simple_term_menu import TerminalMenu
 
 PLAYER_COLORS = {"X": Fore.YELLOW, "O": Fore.BLUE}
@@ -94,7 +94,7 @@ def choose_players():
         return "Player vs. Computer"
     elif selected_index == 2:
         show_rules()
-        input("Press Enter to continue.")
+        input(f"{Fore.MAGENTA}Press Enter to continue.{Style.RESET_ALL}")
         return choose_players()
     else:
         print(f"{Fore.GREEN}Goodbye!{Fore.RESET}")
@@ -133,24 +133,28 @@ def play_game():
         game_board(board)
 
         if current_player == "X" or game_mode == "Player vs. Player":
-            position = input(f"{player1_name if current_player == 'X' else player2_name}, enter a position (1-9), or q to quit game: ")
+            position = input(
+                f"{player1_name if current_player == 'X' else player2_name},"
+                f"{Fore.LIGHTYELLOW_EX}Enter a position (1-9), or q to quit game:{Style.RESET_ALL} "
+                )
 
             if position.lower() == 'q':
-                print("Goodbye!")
+                print(f"{Fore.GREEN}Goodbye!{Style.RESET_ALL}")
+
                 return
 
             if not position.isdigit() or not (1 <= int(position) <= 9):
-                print("Invalid input. Please enter a number between 1 and 9.")
+                print(f"{Fore.RED}Invalid input. Please enter a number between 1 and 9.{Style.RESET_ALL}")
                 continue
 
             position = int(position) - 1
             row, col = divmod(position, 3)
 
             if board[row][col] in ["X", "O"]:
-                print("That position is already occupied. Try again.")
+                print(f"{Fore.LIGHTRED_EX}That position is already occupied. Try again.{Style.RESET_ALL}")
                 continue
         else:
-            print("Wait it's the computer's turn...")
+            print(f"{Fore.LIGHTBLUE_EX}Wait it's the computer's turn...{Style.RESET_ALL}")
             time.sleep(2)
             row, col = computer_move(board)
         
@@ -159,24 +163,24 @@ def play_game():
         if check_for_win(board, current_player):
             game_board(board)
             if game_mode == "Player vs. Computer" and current_player == "O":
-                print("Computer wins!")
+                print(f"{Fore.LIGHTBLUE_EX}Computer wins!{Style.RESET_ALL}")
             else:
                 print(f"{player1_name if current_player == 'X' else player2_name} wins!")
             break
 
         if check_for_tie(board):
             game_board(board)
-            print("It's a draw!")
+            print(f"{Fore.LIGHTMAGENTA_EX}It's a draw!{Style.RESET_ALl}")
             break
 # changes player after each move
         current_player = "O" if current_player == "X" else "X"
 # asks player if they want to play again
 
-    play_again = input("Play again (y/n)? ")
+    play_again = input(f"{Fore.MAGENTA}Play again (y/n)?{Style.RESET_ALL}")
     if play_again.lower() == "y":
         play_game()
     else:
-        print("Goodbye!")
-    
+        print(f"{Fore.GREEN}Goodbye!{Style.RESET_ALL}")
+
 if __name__ == "__main__":
     play_game()
