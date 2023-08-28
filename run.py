@@ -69,7 +69,8 @@ def computer_move(board):
     return random.choice(empty_cells) if empty_cells else None
 
 def validate_name(name):
-    return name.isalpha() and len(name) > 0
+    return name.isalpha() and len(name) <= 10
+
 # This function gets the player to input their name
 def get_player_name(player_symbol):
     while True:
