@@ -184,7 +184,7 @@ def play_game():
                 confirm = input("Are you sure you want to quit (y/n)?")
                 if confirm == "y":
                     print(f"{Fore.GREEN}Goodbye!{Style.RESET_ALL}")
-                    return choose_players()
+                    return play_game()
                 else:
                     continue
             
