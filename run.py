@@ -26,6 +26,10 @@ def start_game_board():
             ["7", "8", "9"]]
 
 def show_rules():
+    """This function displays the rules of the game
+    and gives a 1 second delay between each rule
+    for easy readability
+    """
     rules = [
         " THE RULES OF TIC-TAC-TOE",
         " This game is played on a 9 space board ",
@@ -37,7 +41,6 @@ def show_rules():
         " To Play again press 'y'",
         " Good Luck!"
     ]
-
     for rule in rules:
         print(rule)
         time.sleep(1)
@@ -59,20 +62,32 @@ def check_for_win(board, player):
             return True 
     return False
 
+
 def check_for_tie(board):
-    # if all cells are full and no one has won it's a tie
+    """Checks if the game is a tie"""
     return all(cell in ["X", "O"] for row in board for cell in row)
-# this function checks for empty cells and returns a random one
-# for the computers move and returns a random choice
+
+
 def computer_move(board):
+    """This function gets the computer to make a move
+    it checks if cell is empty
+    if empty it returns a random cell
+    """
     empty_cells = [(row, col) for row in range(3) for col in range(3) if board[row][col] not in ["X", "O"]]
     return random.choice(empty_cells) if empty_cells else None
 
+
 def validate_name(name):
+    """This function validates the player's name
+    checks if name is alphabetic and less than 10 characters"""
     return name.isalpha() and len(name) <= 10
 
-# This function gets the player to input their name
+
 def get_player_name(player_symbol):
+    """This function gets the player's name
+    and validates it using the validate_name function
+    if not valid it asks for name again
+    """
     while True:
         name = input(
     f"{Fore.LIGHTGREEN_EX}Enter your name ({player_symbol}): {Style.RESET_ALL}"
@@ -86,7 +101,8 @@ def get_player_name(player_symbol):
 
 def choose_players():
     """This function chooses how the game will be played
-    either player vs player or player vs computer
+    either player vs player or player vs computer or display rules
+    from a terminal menu
     """
     player_options = ["Player vs. Player", "Player vs. Computer", "Show Rules"]
     terminal_menu = TerminalMenu(player_options, title="Tic Tac Toe - Choose Players")
@@ -107,12 +123,11 @@ def choose_players():
     
 def play_game():
     """This is the main function that runs the game
-    it get game mode, player names
+    it get game mode and player names
     displays the game board
     gets player input
     checks for win or tie
-    changes player
-    asks if player wants to play again
+    changes player after each move
     gives option to quit
     gets computer move
     give the option to play again
@@ -132,8 +147,17 @@ def play_game():
     
     board = start_game_board()
     current_player = "X"
-# This is the game loop
+
+
     while True:
+        """This loop runs the game
+        it gets player input
+        give option to quit
+        checks if input is valid
+        checks for win or tie
+        changes player after each move
+
+        """
         game_board(board)
 
         if current_player == "X" or game_mode == "Player vs. Player":
@@ -146,8 +170,7 @@ def play_game():
                 print(f"{Fore.GREEN}Goodbye!{Style.RESET_ALL}")
                 input(f"{Fore.LIGHTMAGENTA_EX}Press Enter to Return to Game Menu.{Style.RESET_ALL}")
                 break
-                       
-
+                    
             if not position.isdigit() or not (1 <= int(position) <= 9):
                 print(f"{Fore.RED}Invalid input. Please enter a number between 1 and 9.{Style.RESET_ALL}")
                 continue
@@ -177,9 +200,9 @@ def play_game():
             game_board(board)
             print(f"{Fore.LIGHTMAGENTA_EX}It's a draw!{Style.RESET_ALl}")
             break
-# changes player after each move
+
         current_player = "O" if current_player == "X" else "X"
-# asks player if they want to play again
+
 
     play_again = input(f"{Fore.LIGHTMAGENTA_EX}Play again (y/n)?{Style.RESET_ALL}")
     if play_again.lower() == "y":
