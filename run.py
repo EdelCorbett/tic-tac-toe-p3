@@ -144,8 +144,8 @@ def play_game():
             if position.lower() == 'q':
                 print(f"{Fore.GREEN}Goodbye!{Style.RESET_ALL}")
                 input(f"{Fore.LIGHTMAGENTA_EX}Press Enter to Return to Game Menu.{Style.RESET_ALL}")
-                return choose_players()
-                
+                break
+                       
 
             if not position.isdigit() or not (1 <= int(position) <= 9):
                 print(f"{Fore.RED}Invalid input. Please enter a number between 1 and 9.{Style.RESET_ALL}")
