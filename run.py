@@ -55,6 +55,7 @@ def show_rules():
         time.sleep(1)
 
 
+
 def check_for_win(board, player):
     """Checks if the player has won
     by checking all the possible winning combinations
@@ -134,7 +135,7 @@ def choose_players():
         print(f"{Fore.GREEN}Goodbye!{Fore.RESET}")
         return None
 
-
+    
 def play_game():
     """This is the main function that runs the game
     it get game mode and player names
@@ -174,19 +175,26 @@ def play_game():
         """
         game_board(board)
 
-        if current_player == "X" or game_mode == "Player vs. Player":
+        if current_player == "X" or game_mode =="Player vs. Player":
             position = input(
-                f"{player1_name if current_player == 'X' else player2_name},"
-                f"{Fore.LIGHTMAGENTA_EX}Enter position (1-9),or q to quit game:{Style.RESET_ALL} "
+                f"""
+                {player1_name if current_player == 'X' else 
+                 player2_name},
+                {Fore.LIGHTMAGENTA_EX}Enter position (1-9),
+                or q to quit game:{Style.RESET_ALL}"""
                 )
 
-            if position.lower() == 'q':
-                confirm = input("Are you sure you want to quit (y/n)?")
-                if confirm == "y":
+            if position.lower() == "q":
+                confirm = input("ARE YOU SURE YOU WANT TO QUIT (y/n)?")
+                if confirm.lower() == "y":
                     print(f"{Fore.GREEN}Goodbye!{Style.RESET_ALL}")
                     return play_game()
-                else:
+                elif confirm.lower() == "n":
                     continue
+                elif confirm.lower() != "y" or "n":
+                    print(f"""{Fore.RED}
+                        Invalid input. Please enter y or n.{Style.RESET_ALL}""")
+                    
             
             """
             Checks if input is a number
@@ -194,7 +202,9 @@ def play_game():
             if not it asks for input again
             """       
             if not position.isdigit() or not (1 <= int(position) <= 9):
-                print(f"{Fore.RED}Invalid input. Please enter a number between 1 and 9.{Style.RESET_ALL}")
+                print(f"""{Fore.RED}
+                    Invalid input. Please enter a number between 1 and 9.
+                    {Style.RESET_ALL}""")
                 continue
             """
             Int is making sure the input is a number 
@@ -208,10 +218,14 @@ def play_game():
             row, col = divmod(position, 3)
 
             if board[row][col] in ["X", "O"]:
-                print(f"{Fore.LIGHTRED_EX}Position already occupied.Try again.{Style.RESET_ALL}")
+                print(f"""
+                    {Fore.LIGHTRED_EX}Position already occupied.
+                    Try again.{Style.RESET_ALL}""")
                 continue
         else:
-            print(f"{Fore.LIGHTBLUE_EX}Wait it's the computer's turn...{Style.RESET_ALL}")
+            print(f"""
+                {Fore.LIGHTBLUE_EX}Wait it's the computer's turn...
+                {Style.RESET_ALL}""")
             time.sleep(2)
             row, col = computer_move(board)
         
@@ -222,7 +236,8 @@ def play_game():
             if game_mode == "Player vs. Computer" and current_player == "O":
                 print(f"{Fore.LIGHTBLUE_EX}Computer wins!{Style.RESET_ALL}")
             else:
-                print(f"{player1_name if current_player == 'X'else player2_name} wins!")
+                print(f"""{player1_name if current_player == 'X'
+                        else player2_name} wins!""")
             break
 
         if check_for_tie(board):
@@ -233,12 +248,17 @@ def play_game():
         current_player = "O" if current_player == "X" else "X"
 
 
-    play_again = input(f"{Fore.LIGHTMAGENTA_EX}Play again (y/n)?{Style.RESET_ALL}")
-    if play_again.lower() == "y":
-        play_game()
-    else:
+    play_again = input("Would you like to play again (y/n)?")
+    if play_again.lower() =="y":
+        return play_game()
+    elif play_again.lower() == "n":
         print(f"{Fore.GREEN}Goodbye!{Style.RESET_ALL}")
         return
+    elif play_again.lower() != "y" or "n":
+        print(f"{Fore.RED}Invalid input. Please enter y or n.{Style.RESET_ALL}")
+    else:
+        return play_game()
+       
 
 
 if __name__ == "__main__":
