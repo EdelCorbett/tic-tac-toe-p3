@@ -4,6 +4,8 @@ import time
 from colorama import Fore, Style
 from simple_term_menu import TerminalMenu
 
+
+""" This gives X and O different colors"""
 PLAYER_COLORS = {"X": Fore.LIGHTYELLOW_EX, "O": Fore.LIGHTBLUE_EX}
 
 
@@ -26,7 +28,7 @@ def game_board(board):
 
 
 def start_game_board() :
-    """This function creates the game board in grid format"""
+    """This function creates the game board in grid format number 1-9"""
     return [
         ["1", "2", "3"],
         ["4", "5", "6"],
@@ -58,8 +60,8 @@ def show_rules():
         time.sleep(1)
 
 def clear_screen():
+    """This function clears the screen"""
     os.system("cls" if os.name == "nt" else "clear")
-
 
 
 def check_for_win(board, player):
@@ -176,6 +178,8 @@ def play_game():
     board = start_game_board()
     current_player = "X"
 
+    clear_screen()
+
 
     while True:
         """
@@ -190,52 +194,55 @@ def play_game():
         game_board(board)
 
         if current_player == "X" or game_mode =="Player vs. Player":
-
-                position = input(
-                f"""
-                {player1_name if current_player == 'X' else 
-                player2_name},
-                {Fore.LIGHTMAGENTA_EX}Enter position (1-9),
+            position = input(f"""{player1_name if current_player == 'X' else 
+                player2_name},{Fore.LIGHTMAGENTA_EX} Enter position (1-9),
                 or q to quit game:{Style.RESET_ALL}"""
                 )
 
-                if position.lower() == "q":
-                    while True:
-                        confirm = input("ARE YOU SURE YOU WANT TO QUIT (y/n)?").lower()
-                        if confirm.lower() == "y":
-                            print(f"{Fore.GREEN}Goodbye!{Style.RESET_ALL}")
-                            clear_screen()
-                            return play_game()
-                        elif confirm.lower() == "n":
-                            break
-                        else:
-                            confirm.lower() != "y" or "n"
-                            print(f"""{Fore.RED}
-                            Invalid input. Please enter y or n.
-                                {Style.RESET_ALL}""")
-                    
+            if position.lower() == "q":
+                confirm = input("ARE YOU SURE YOU WANT TO QUIT (y/n)?")
+                if confirm.lower() == "y":
+                    print(f"{Fore.GREEN}Goodbye!{Style.RESET_ALL}")
+                    return play_game()
+                elif confirm.lower() == "n":
+                    continue
+                elif confirm.lower() != "y" or "n":
+                    print(f"""{Fore.RED}
+                        Invalid input. Please enter y or n.{Style.RESET_ALL}""")
                     
             
-            # Checks if input is a number between 1 and 9 
-                if not position.isdigit() or not (1 <= int(position) <= 9):
-                    print(f"""{Fore.RED}
+            # Checks if input is a number and between 1 and 9
+            # if not it asks for input again
+
+            if not position.isdigit() or not (1 <= int(position) <= 9):
+                print(f"""{Fore.RED}
                     Invalid input. Please enter a number between 1 and 9.
                     {Style.RESET_ALL}""")
-                    continue
-                position = int(position) - 1
-                row, col = divmod(position, 3)
+                print()
+                continue
+        
+            # Int is making sure the input is a number 
+            # Divmod is used to get the row and column
+            # from the position entered by the player
+            # -1 is used to get the correct index
+            # Then checks if the position is already occupied
+            # if occupied it asks for input again
+            
+            position = int(position) - 1
+            row, col = divmod(position, 3)
 
-                if board[row][col] in ["X", "O"]:
-                    print(f"""
+            if board[row][col] in ["X", "O"]:
+                print(f"""
                     {Fore.LIGHTRED_EX}Position already occupied.
                     Try again.{Style.RESET_ALL}""")
-                    continue
-                else:
-                    print(f"""
+                continue
+        else:
+            print(f"""
                 {Fore.LIGHTBLUE_EX}Wait it's the computer's turn...
                 {Style.RESET_ALL}""")
-                time.sleep(2)
-                row, col = computer_move(board)
+            print()
+            time.sleep(2)
+            row, col = computer_move(board)
         
         board[row][col] = current_player
 
@@ -250,28 +257,28 @@ def play_game():
 
         if check_for_tie(board):
             game_board(board)
-            print(f"{Fore.LIGHTMAGENTA_EX}It's a draw!{Style.RESET_ALl}")
+            print(f"{Fore.LIGHTMAGENTA_EX}It's a draw!{Style.RESET_ALL}")
             break
 
         current_player = "O" if current_player == "X" else "X"
 
     while True:
-        play_again = input("Would you like to play again (y/n)?").lower()
+        play_again = input(f"{Fore.LIGHTMAGENTA_EX}Play again (y/n)?{Style.RESET_ALL}").lower()
 
-        if play_again.lower() =="y":
+        if play_again == "y":
             clear_screen()
             return play_game()
-        
-        elif play_again.lower() == "n":
+        elif play_again == "n":
             print(f"{Fore.GREEN}Goodbye!{Style.RESET_ALL}")
-            return play_game()
-        
-        elif play_again.lower() != "y" or "n":
-            print(f"{Fore.RED}Invalid input. Please enter y or n.{Style.RESET_ALL}")
-
+            return
         else:
-            return play_game()
+            print(f"{Fore.RED}Invalid input. Please enter y or n.{Style.RESET_ALL}")
+            continue
+
+
+        
 
 
 if __name__ == "__main__":
     play_game()
+    
