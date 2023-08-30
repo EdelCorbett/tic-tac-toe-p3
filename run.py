@@ -29,7 +29,9 @@ def game_board(board):
 
 
 def start_game_board():
-    """This function creates the game board in grid format number 1-9"""
+    """
+    This function creates the game board in grid format number 1-9
+    """
     return [
         ["1", "2", "3"],
         ["4", "5", "6"],
@@ -105,7 +107,7 @@ def computer_move(board):
 def validate_name(name):
     """
     This function validates the player's name
-    checks if name is alphabetic and less than 10 characters
+    checking if name is alphabetic and less than 10 characters
     """
     return name.isalpha() and len(name) <= 10
 
@@ -186,15 +188,7 @@ def play_game():
     clear_screen()
 
     while True:
-        """
-        This loop runs the game
-        it gets player input
-        give option to quit
-        checks if input is valid
-        checks for win or tie
-        changes player after each move
 
-        """
         game_board(board)
 
         if current_player == "X" or game_mode == "Player vs. Player":
@@ -222,10 +216,8 @@ def play_game():
                         {Style.RESET_ALL}""")
                     print()
                     continue
-                    
-            # Checks if input is a number and between 1 and 9
-            # if not it asks for input again
-
+                    # Checks if input is a number and between 1 and 9
+                    # if not it asks for input again
             if not position.isdigit() or not (1 <= int(position) <= 9):
                 print(f"""{Fore.RED}
                     Invalid input. Please enter a number between 1 and 9.
