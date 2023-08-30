@@ -210,6 +210,8 @@ def play_game():
                 print()
                 if confirm.lower() == "y":
                     print(f"{Fore.GREEN}Goodbye!{Style.RESET_ALL}")
+                    time.sleep(1)
+                    clear_screen()
                     return play_game()
                 elif confirm.lower() == "n":
                     continue
@@ -282,7 +284,9 @@ def play_game():
             return play_game()
         elif play_again == "n":
             print(f"{Fore.GREEN}Goodbye!{Style.RESET_ALL}")
-            return
+            time.sleep(1)
+            clear_screen()
+            return play_game()
         else:
             print(f"""{Fore.RED}Invalid input. Please enter y or n.
             {Style.RESET_ALL}""")
