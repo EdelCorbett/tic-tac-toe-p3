@@ -219,7 +219,7 @@ def play_game():
                         Invalid input. Please enter y or n.
                         {Style.RESET_ALL}""")
                     print()
-                    break
+                    continue
                     
             # Checks if input is a number and between 1 and 9
             # if not it asks for input again
