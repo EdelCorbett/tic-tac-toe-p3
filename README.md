@@ -37,4 +37,19 @@ This Project was deployed through [HEROKU](https://www.heroku.com/) using these 
 ![](documentation/setting.png)
 7. From here scroll down to Config Vars 
 ![](documentation/config.png)
-
+8. Next add buildpacks for this project python and nodejs was used
+![](documentation/build_pack.png)
+9. Then go to Deploy in menu bar
+![](documentation/deploy.png)
+10. Choose github then choose connect to github
+![](documentation/deploy-method.png)
+11. Now enter repository name in search
+![](documentation/name.png) 
+12. Then click connect
+![](documentation/connect.png)
+13. From here scroll down and pick either automatic Deploy or manual deploy
+![](documentation/update-deploy.png)
+14. the app is now been built
+![](documentation/building.png)
+15. Once this has finished click view to go to app 
+![](documentation/deployed_success.png)
