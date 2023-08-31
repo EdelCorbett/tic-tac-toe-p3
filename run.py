@@ -22,7 +22,7 @@ def game_board(board):
         colored_row = [
             cell if cell in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
             else (f"{Fore.LIGHTYELLOW_EX}{cell}{Fore.RESET}"
-                  if cell == "X" else f"{Fore.LIGHTBLUE_EX}{cell}{Fore.RESET}")
+                if cell == "X" else f"{Fore.LIGHTBLUE_EX}{cell}{Fore.RESET}")
             for cell in row]
         print(separator.join(colored_row))
         print(border)
