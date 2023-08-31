@@ -4,6 +4,7 @@ This is a game for player vs. player or player vs. computer each player gets a s
 ![Mckups](documentation/mockup.png)
 
 Link to App [Tic Tac Toe ](https://tic-tac-toe-pp3-3dc19c748ca1.herokuapp.com/)
+Link to [github](https://github.com/EdelCorbett/tic-tac-toe-p3)
 
 # User stories
 ## As a player 

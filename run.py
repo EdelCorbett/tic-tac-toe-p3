@@ -202,13 +202,16 @@ def play_game():
             if position.lower() == "q":
                 confirm = input("ARE YOU SURE YOU WANT TO QUIT (y/n)?")
                 print()
+
                 if confirm.lower() == "y":
                     print(f"{Fore.GREEN}Goodbye!{Style.RESET_ALL}")
                     time.sleep(1)
                     clear_screen()
                     return play_game()
+                
                 elif confirm.lower() == "n":
                     continue
+
                 else:
                     confirm.lower() not in ["y", "n"]
                     print(f"""{Fore.RED}
@@ -216,6 +219,7 @@ def play_game():
                         {Style.RESET_ALL}""")
                     print()
                     continue
+                    
                     # Checks if input is a number and between 1 and 9
                     # if not it asks for input again
             if not position.isdigit() or not (1 <= int(position) <= 9):
@@ -241,6 +245,7 @@ def play_game():
                     Try again.{Style.RESET_ALL}""")
                 print()
                 continue
+            
         else:
             print(f"""
                 {Fore.LIGHTBLUE_EX}Wait it's the computer's turn...
