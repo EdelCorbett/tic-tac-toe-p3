@@ -4,15 +4,16 @@ This is a game for player vs. player or player vs. computer each player gets a s
 ![Mckups](documentation/mockup.png)
 
 Link to App [Tic Tac Toe ](https://tic-tac-toe-pp3-3dc19c748ca1.herokuapp.com/)
-Link to [github](https://github.com/EdelCorbett/tic-tac-toe-p3)
+
+Link to [github repository](https://github.com/EdelCorbett/tic-tac-toe-p3)
 
 # User stories
 ## As a player 
-* I want to play a game that is clear and easy to understand for both young children and adults
-* I want an easy-to-use menu
-* I want to be able to navigate easily through options
-* I want the option to quit the game 
-* I want the option to play again
+* I want to play a game that is clear and easy to understand for both young children and adults.
+* I want an easy-to-use menu.
+* I want to be able to navigate easily through options.
+* I want the option to quit the game.
+* I want the option to play again.
 ---
 # Features
 ## A [simple_term_menu](https://pypi.org/project/simple-term-menu/) to give options for game mode and rules.
@@ -52,10 +53,6 @@ Link to [github](https://github.com/EdelCorbett/tic-tac-toe-p3)
 * [colorama](https://pypi.org/project/colorama/) To add color to project.
 * [simple_term_menu](https://pypi.org/project/simple-term-menu/) to create options menu.
 
-
-
-
-
 ---
 # Flow Chart
 ![Flowchart](documentation/flowchart.png)
@@ -89,14 +86,15 @@ run.py was ran put throught pep8 no errors are found
 # Manual Testing
 | Feature | Expect | Action | Result |Tested |
 |---|---|---|---|---|
-|Player vs. player |Get players name|input name |Player can input name|Pass|
-|player vs. computer |Get players name|input name |Player can input name|Pass|
+|Player vs. player |Get players name|Input name |Player can input name|Pass|
+|player vs. computer |Get players name|Input name |Player can input name|Pass|
 |Show Rules|Displays rules|Click on Show rules|display rules to termial|Pass|
 |Invalid inputs|If input is ivalid the ask to try again|Input invalid letters or numbers|Ask to try again|Pass||
 |Game board updates to show players move |dispaly players move on board with their symbol|choose a space on the board|Update game board|Pass|
 |Check for win |Display who won or contuie playing|play game|display who won|Pass|
 |Check for draw |Display if it a draw or contuie playing|play game|Display its a draw or continues game|Pass|
 Check if player want to play again |play again or end game|starts game again or ends game|play game |Pass|
+---
 
 # Bugs
 

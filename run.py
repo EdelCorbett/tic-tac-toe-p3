@@ -208,18 +208,18 @@ def play_game():
                     time.sleep(1)
                     clear_screen()
                     return play_game()
-                
+
                 elif confirm.lower() == "n":
                     continue
 
                 else:
                     confirm.lower() not in ["y", "n"]
                     print(f"""{Fore.RED}
-                        Invalid input. Please enter y or n.
+                        Invalid input.
                         {Style.RESET_ALL}""")
                     print()
                     continue
-                    
+
                     # Checks if input is a number and between 1 and 9
                     # if not it asks for input again
             if not position.isdigit() or not (1 <= int(position) <= 9):
@@ -245,7 +245,6 @@ def play_game():
                     Try again.{Style.RESET_ALL}""")
                 print()
                 continue
-            
         else:
             print(f"""
                 {Fore.LIGHTBLUE_EX}Wait it's the computer's turn...
